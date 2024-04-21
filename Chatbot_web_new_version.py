@@ -30,11 +30,12 @@ random_number = ''.join(random.choices('0123456789', k=10))
 # Create the filename by appending ".json" to the random number
 filename = f"{random_number}.json"
 
-html_content = """
-<!DOCTYPE html>
+with open('index.html', 'r') as html_file:
+    html_content = ''.join(html_file.readlines())
+html_content1 = """
 <html>
    <head>
-      <title>Chatbot(happylife.com)</title>
+      <title>UpliftUnity Chatbot(upliftunity.com)</title>
       <style>
          body {
          font-family: Arial, sans-serif;
@@ -145,13 +146,13 @@ html_content = """
    </head>
    <body>
       <div class="header">
-         <h1>MindTalk</h1>
-         <p>Your Safe Space for Mental Health Conversations</p>
+         <h1>UpliftUnity</h1>
+         <p> Together, Elevating Mental Well-being | Your Personal Journal</p>
          <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjDcKKysNK_nr7adN9HQ-SLTWpuRQLrC4m7Q&usqp=CAU" alt="Logo" width="100">
       </div>
       <div class="container">
          <div class="login-container" id="login-container">
-            <h2>Discover Your Empathetic Personal Journal !</h2>
+            <h2>Chat, Reflect, Grow!</h2>
             <form id="login-form">
                <input type="text" id="user-name" class="validation-input" placeholder="Please Enter User Name">
                <br>
@@ -238,7 +239,6 @@ html_content = """
       </script>
    </body>
 </html>
-
 
 """
 
