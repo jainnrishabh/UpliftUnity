@@ -3,21 +3,21 @@
       <title>UpliftUnity Chatbot(upliftunity.com)</title>
       <style>
          body {
-         font-family: Arial, sans-serif;
+         font-family:'Courier New', Courier, monospace;
          background-color: #f5f5f5;
          margin: 0;
          padding: 0;
          background-image: url('https://muhc.ca/sites/default/files/landing-page/2021/departements_0_0.jpeg');
-         background-size: cover; /* Adjust as needed */
-         background-position: center center; /* Adjust as needed */
+         background-size: cover; 
+         background-position: center center; 
          background-attachment: fixed;
          }
          .header {
-         background-color: #E72E06;
+         background-color: #687dac;
          color: #fff;
          text-align: center;
          padding: 20px;
-         font-family: 'Dancing Script', cursive;
+         font-family: 'Courier New', Courier, monospace;
          display: flex;
          }
          .container {
@@ -45,7 +45,7 @@
          border-radius: 10px;
          }
          .send-button {
-         background-color: #007bff;
+         background-color: #c8d9d3;
          color: #fff;
          border: none;
          border-radius: 10px;
@@ -55,7 +55,7 @@
          font-size: 16px;
          }
          .submit-button {
-         background-color: #2ECC71;
+         background-color: #687dac;
          color: #fff;
          border: none;
          border-radius: 10px;
@@ -68,7 +68,7 @@
          }
          .login-container {
          text-align: center;
-         font-family: 'Brush Script', cursive;
+         font-family: 'Courier New', Courier, monospace;;
          }
          .validation-input {
          padding: 10px;
@@ -113,7 +113,7 @@
       <div class="header">
          <h1>UpliftUnity</h1>
          <p> Together, Elevating Mental Well-being | Your Personal Journal</p>
-         <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjDcKKysNK_nr7adN9HQ-SLTWpuRQLrC4m7Q&usqp=CAU" alt="Logo" width="100">
+         <img class="logo" src="happy.jpeg" alt="Logo" width="100">
       </div>
       <div class="container">
          <div class="login-container" id="login-container">
@@ -139,7 +139,9 @@
          <div id="chat-container" style="display: none;">
             <div id="message-history"></div>
             <form id="chat-form">
+
                <input type="text" id="user-input" class="message-input" placeholder="Send a message">
+               <button type="button" id="voice-input" class="submit-button">Voice Input</button>
                <input type="submit" value="Send" class="submit-button">
             </form>
             <div id="chatbot-response"></div>
@@ -169,7 +171,7 @@
             document.getElementById('chat-form').addEventListener('submit', (e) => {
                 e.preventDefault();
                 const userInput = document.getElementById('user-input').value;
-         
+               
                 // Display user message in the message history
                 const userMessageContainer = document.createElement('div');
                 userMessageContainer.className = 'message-container user-message';
@@ -201,6 +203,39 @@
             var signupParagraph = document.getElementById("signup-paragraph");
             signupParagraph.style.display = "block"; // Show the signup paragraph
          }
+
+         
       </script>
+      <script>
+         const startButton = document.getElementById('voice-input');
+	const outputDiv = document.getElementById('user-input');
+
+	const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+	recognition.lang = 'en-US';
+	let isRecording = false;
+
+	recognition.onstart = () => {
+		startButton.textContent = 'Stop recording';
+		isRecording = true;
+	};
+
+	recognition.onresult = (event) => {
+		const transcript = event.results[0][0].transcript;
+		outputDiv.value = transcript;
+	};
+
+	recognition.stop = () => {
+		startButton.textContent = 'Record';
+		isRecording = false;
+	};
+
+	startButton.addEventListener('click', () => {
+		if (isRecording) {
+        recognition.stop();
+    } else {
+        recognition.start();
+    }
+	});
+     </script>
    </body>
 </html>
